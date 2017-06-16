@@ -1,0 +1,14 @@
+body {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+#heading {
+	letter-spacing: 5px;
+}
+
+#left-col {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
