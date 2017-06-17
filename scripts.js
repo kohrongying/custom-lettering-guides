@@ -1,38 +1,62 @@
 
 var paperWidth = 210;
 var paperHeight = 297;
-var lineWidth = {
+var lineThicknessChoices = {
 	'Thick': 2,
 	'Thin': 0.5,
 	'Normal': 1
 }
 
-const drawLine = (doc, ht) => {
-	ht = parseInt(ht);
+const drawLine = (doc, ht, lineThickness) => {
 	inc = ht;
 	numLines = parseInt(paperHeight/ht);
 	for (let i=0; i<numLines; i++){
+		doc.setDrawColor(0,0,0);
+		doc.setLineWidth(lineThickness);
+		doc.line(0, inc, paperWidth, inc); // x coor, y coor, length x, length y 
 
-		// x coor, y coor, length x, length y 
+		inc = inc + ht + lineThickness;
+
+		drawDotted(doc, inc);
+		inc = inc + ht + 0.1;
+
+		doc.setLineWidth(lineThickness);
 		doc.line(0, inc, paperWidth, inc);
-		inc = inc + ht;
-	}	
-}
 
-const setLineWidth = (doc, width) => {
-	doc.setLineWidth(lineWidth[width]);
-}
-
-const drawDiagonal = (doc, angle, ht) => {
-	doc.setLineWidth(0.1);
-	ht = parseInt(ht);
-	inc = ht;
-	numLines = parseInt(paperHeight/ht);
-	for (let i=0; i<numLines; i++){
-		doc.line(0, inc, computeLength(angle,inc), 0);
-		inc = inc + ht;
-	}	
+		doc.setDrawColor(255,255,255);
+		doc.setLineWidth(5);
+		doc.line(0, inc+3, paperWidth, inc+3);
 	
+		inc = inc + 5;
+	}	
+}
+
+const drawDotted = (doc, y) => {
+	doc.setLineWidth(0.1);
+	dash = 3;
+	x = 0;
+	while (x<paperWidth){
+		doc.line(x, y, x+dash, y);
+		x = x + dash + 5;
+	}
+}
+
+
+const drawDiagonal = (doc, angle, ht, lineThickness) => {
+	doc.setLineWidth(0.1);
+	inc = 2*ht;
+	numLines = parseInt(paperHeight/ht);
+	width = computeLength(angle,ht);
+	i=0;
+	totalwidth = width;
+	while (i<numLines+1){
+		doc.line(0, inc, totalwidth, ht);
+		inc = inc + ht + lineThickness;
+		totalwidth += width;
+		if(totalwidth>=paperWidth){
+			i+=1;
+		}
+	}	
 }
 
 const computeLength = (angle, ht) => {
@@ -43,14 +67,14 @@ const getRadian = (angle) => {
 	return angle/180*Math.PI;
 }
 
-const downloadPDF = (ht, width) => {
+const downloadPDF = (ht, width, angle) => {
 	var doc = new jsPDF('p','mm','a4');
-	setLineWidth(doc, width);
-	drawLine(doc, ht);	
-	drawDiagonal(doc,30,ht);
+	doc.text('Custom Lettering Guides',90, 8);
+
+	drawDiagonal(doc, angle, ht, width);
+	drawLine(doc, ht, width);	
 	pdfOutput = doc.output('datauristring');
 	preview.src = pdfOutput;
-		// doc.save('hello_world.pdf');
 }
 
 
@@ -58,9 +82,11 @@ $(function() {
   $('#pdf-form').on("submit",function(e) {
     e.preventDefault(); // cancel the actual submit
 	ht = document.getElementById('height').value;
-	width = document.getElementById('line-thickness').value;
-	console.log(ht);
-	console.log(width);
-	downloadPDF(ht,width);
+	ht = parseInt(ht);
+	thickness = document.getElementById('line-thickness').value;
+	thickness = lineThicknessChoices[thickness];
+	angle = $('#slant-angle').val();
+
+	downloadPDF(ht,thickness,angle);
   });
 });
