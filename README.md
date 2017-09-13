@@ -3,8 +3,8 @@ Customize own practice sheets by specifying the line height, thickness and save 
 
 ### Tasks
 - [ ] Add different paper types (a3,a4,letter,legal)
-- [ ] Add diagonal lines
-- [ ] Add dotted lines
+- [x] Add diagonal lines
+- [x] Add dotted lines
 - [ ] Add download button
 - [ ] Add styling keke
 

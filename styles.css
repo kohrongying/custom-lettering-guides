@@ -1,8 +1,31 @@
 body {
-	height: 100vh;
-	display: flex;
-	align-items: center;
+	
 }
+
+section.page-title {
+	padding: 3em;
+	background: #40E0D0; /*pinkish*/
+}
+
+section.content{
+	background: #F8EF88; /*light yellow*/
+}
+
+@media screen and (min-width:780px) {
+	body {
+		height: 100vh;
+	}
+
+	section.content {
+		height: 80%;
+		padding: 3em;
+	}
+
+	section.page-title {
+		height: 20%;
+	}
+}
+
 #heading {
 	letter-spacing: 5px;
 }
@@ -10,5 +33,14 @@ body {
 #left-col {
 	display: flex;
 	justify-content: center;
-	flex-direction: column;
+	align-items: center;
+	padding: 3em;
+}
+
+.submit-btn {
+	margin: auto;
+}
+
+#circle-bg {
+	position: fixed;
 }

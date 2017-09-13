@@ -7,6 +7,12 @@ var lineThicknessChoices = {
 	'Normal': 1
 }
 
+var canvas = document.getElementById('circle-bg');
+var ctx = canvas.getContext('2d');
+
+ctx.fillStyle='#FF0000';
+ctx.fillRect(0, 100,50,100);
+
 const drawLine = (doc, ht, lineThickness) => {
 	inc = ht;
 	numLines = parseInt(paperHeight/ht);
@@ -69,7 +75,7 @@ const getRadian = (angle) => {
 
 const downloadPDF = (ht, width, angle) => {
 	var doc = new jsPDF('p','mm','a4');
-	doc.text('Custom Lettering Guides',90, 8);
+	doc.text('Custom Lettering Guides', 80, 7);
 
 	drawDiagonal(doc, angle, ht, width);
 	drawLine(doc, ht, width);	
