@@ -1,6 +1,8 @@
 # Custom Handlettering Practice Sheets
 Customize own practice sheets by specifying the line height, thickness and save it as pdf to print. 
+
 View it now [here!](https://kohrongying.github.io/custom-lettering-guides/)
+
 Don't say neh warn its still v raw... :( Salmon sashimi raw.
 
 ### Tasks
@@ -12,7 +14,8 @@ Don't say neh warn its still v raw... :( Salmon sashimi raw.
 - [x] Checkout to gh-pages to publish site
 - [x] Responsive (attempts to be hahaa)
 
-```git checkout -b gh-pages
+```
+git checkout -b gh-pages
 git push origin gh-pages
 ```
 
