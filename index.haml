@@ -25,22 +25,27 @@
         %section.content
             .container
                 .row
-                    %canvas#circle-bg
                     #left-col.col-md-6
                         %form#pdf-form
                             .form-group.row
-                                %label.col-form-label{:for => "height"} Height
+                                %label.col-form-label{:for => "height"} 
+                                    %p Height
                                 
                                 %input#height.form-control{:placeholder => "Enter height (in mm)", :type => "number", :value => "10"}
                             .form-group.row
-                                %label.col-form-label{:for => "thickness"} Line Thickness
+                                %label.col-form-label{:for => "thickness"} 
+                                    %p Line Thickness
                             
                                 %select#line-thickness.form-control
-                                    %option Normal
-                                    %option Thin
-                                    %option Thick
+                                    %option 
+                                        %p Normal
+                                    %option 
+                                        %p Thin
+                                    %option 
+                                        %p Thick
                             .form-group.row
-                                %label.col-form-label{:for => "angle"} Slant Angle (in Degrees)
+                                %label.col-form-label{:for => "angle"} 
+                                    %p Slant Angle (in Degrees)
                                 
                                 %input#slant-angle.form-control{:placeholder => "Enter angle (in degrees)", :type => "number", :value => "30"}
                             .row

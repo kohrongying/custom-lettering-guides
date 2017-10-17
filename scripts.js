@@ -7,12 +7,6 @@ var lineThicknessChoices = {
 	'Normal': 1
 }
 
-var canvas = document.getElementById('circle-bg');
-var ctx = canvas.getContext('2d');
-
-ctx.fillStyle='#FF0000';
-ctx.fillRect(0, 100,50,100);
-
 const drawLine = (doc, ht, lineThickness) => {
 	inc = ht;
 	numLines = parseInt(paperHeight/ht);
